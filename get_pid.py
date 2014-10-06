@@ -41,6 +41,7 @@ def main():
     if (tcount>args.ckan_limit): print "=> but maximal %d rows are returned " % args.ckan_limit
     ## print '    | %-4s | %-40s |\n    |%s|' % ('#','Dataset ID',"-" * 53)
     pidf = open('pid.file', 'w')
+    idf = open('id.file', 'w')
     countpid=0
     counter=0
     cstart=0
@@ -50,6 +51,7 @@ def main():
        for ds in answer['result']['results']:
             counter +=1
             ## print'    | %-4d | %-40s |' % (counter,ds['name'])
+            idf.write(ds['name']+'\n')
             for extra in ds['extras']:
                 if (extra['key'] == 'PID'):
                    pidf.write(extra['value']+'\n')
